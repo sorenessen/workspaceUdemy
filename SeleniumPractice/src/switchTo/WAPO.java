@@ -1,0 +1,46 @@
+package switchTo;
+
+import static org.junit.Assert.*;
+
+import java.util.concurrent.TimeUnit;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class WAPO {
+	private WebDriver driver;
+	private String baseUrl;
+	
+	@Before
+	public void setUp() throws Exception {
+		driver = new ChromeDriver();
+		baseUrl = "https://www.washingtonpost.com";
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.get(baseUrl);
+	}
+
+	@Test
+	public void test() throws InterruptedException {
+		driver.findElement(By.id("section-menu-btn")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("//ul[@class='side-nav']//a[text()='Crosswords']")).click();
+		Thread.sleep(10000);
+		driver.switchTo().frame(0);
+		//log.info("switch to iframe");
+
+	
+		
+	}
+	
+	@After
+	public void tearDown() throws Exception {
+	}
+
+
+
+}
